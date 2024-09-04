@@ -50,5 +50,3 @@ def contact(request):
         ).save()
     return render(request, "contact.html")
 
-def test(request):
-    return render(request, 'testindex.html')
