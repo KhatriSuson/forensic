@@ -36,3 +36,18 @@ class Member(models.Model):
         return self.name
 
 
+class SuccessStory(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='media/successStory')
+
+    def __str__(self):
+        return self.title
+    
+class Feedback(models.Model):
+    message = models.CharField(max_length=300)
+    name = models.CharField(max_length=60)
+    image = models.ImageField(upload_to='media/feedback')
+
+    def __str__(self):
+        return self.name

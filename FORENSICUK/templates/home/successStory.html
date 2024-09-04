@@ -1,0 +1,36 @@
+{% load static %}
+<section class="layout_padding story_section">
+    <div class="container-fluid">
+      {% for blog in blogs %}
+      <div class="row">
+        <div class=" col-md-6">
+          <div>
+            <img class="img-fluid" src="{{ blog.image.url }}" alt="" />
+          </div>
+        </div>
+        <div class=" col-md-6">
+
+          <div class="story_detail">
+            <h3>
+              Our
+            </h3>
+            <h2>
+              {{ blog.title }}
+            </h2>
+            <p>
+              {{ blog.description }}
+            </p>
+            <div class="story_detail-btn">
+              <a href="">
+                <span>
+                  Read More
+                </span>
+                <img src="{% static 'images/arrow-black.png' %}" alt="" class="ml-2" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
