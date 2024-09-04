@@ -133,10 +133,11 @@
   <!-- welcome section -->
   <section class="welcome_section layout_padding">
     <div class="container-fluid">
+      {% for about in abouts %}
       <div class="row">
         <div class=" col-md-6">
           <div>
-            <img class="img-fluid" src="{% static 'images/welcome.jpg' %}" alt="" />
+            <img class="img-fluid" src="{{ about.image.url }}" alt="" />
           </div>
         </div>
         <div class=" col-md-6">
@@ -145,16 +146,10 @@
               Welcome
             </h3>
             <h2>
-              Welcome security services Company
+              {{ about.title }}
             </h2>
             <p>
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form, by
-              injected humour, or randomised words which don't look even
-              slightly believable. If you are going to use a passage of Lorem
-              Ipsum, you need to be sure there isn't It is a long established
-              f act that a reader will be distracted by the readable content
-              of a page whe
+              {{ about.description }}
             </p>
             <div class="welcome_detail-btn">
               <a href="">
@@ -167,6 +162,7 @@
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
   </section>
   <!-- end welcome section -->
@@ -254,6 +250,7 @@
       </div>
     </div>
   </section>
+  
   {% include 'home/client_feedback.html' %}
 
   <!-- end story section -->

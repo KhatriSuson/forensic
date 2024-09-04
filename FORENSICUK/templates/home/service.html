@@ -4,36 +4,18 @@
     <div class="container">
         <h2 class="text-center mb-4">Our Forensic Services</h2>
         <div class="row g-4">
+          {% for service in services %}
             <!-- Service 1 -->
             <div class="col-md-4">
                 <div class="card service-card h-100 shadow-sm">
-                    <img src="{% static 'images/security-1.jpg' %}" class="card-img-top service-img" alt="Digital Forensics">
+                    <img src="{{ service.image.url }}" class="card-img-top service-img" alt="Digital Forensics">
                     <div class="card-body text-center">
-                        <h5 class="card-title mt-3">Digital Forensics</h5>
-                        <p class="card-text">We provide expert digital forensics analysis to uncover critical data and evidence for legal cases.</p>
+                        <h5 class="card-title mt-3">{{ service.title }}</h5>
+                        <p class="card-text">{{ service.discription }}</p>
                     </div>
                 </div>
             </div>
-            <!-- Service 2 -->
-            <div class="col-md-4">
-                <div class="card service-card h-100 shadow-sm">
-                    <img src="{% static 'images/security-1.jpg' %}" class="card-img-top service-img" alt="Cybersecurity Assessments">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mt-3">Cybersecurity Assessments</h5>
-                        <p class="card-text">Our team conducts thorough cybersecurity assessments to identify vulnerabilities and safeguard your digital assets.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Service 3 -->
-            <div class="col-md-4">
-                <div class="card service-card h-100 shadow-sm">
-                    <img src="{% static 'images/security-1.jpg' %}" class="card-img-top service-img" alt="Fraud Investigation">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mt-3">Fraud Investigation</h5>
-                        <p class="card-text">We specialize in fraud investigation, utilizing advanced techniques to detect and analyze fraudulent activities.</p>
-                    </div>
-                </div>
-            </div>
+          {% endfor %}
         </div>
     </div>
 </section>
@@ -81,4 +63,6 @@
       </a>
     </div>
   </section>
+
+  {% include 'home/staff.html' %}
   <!-- end security section -->

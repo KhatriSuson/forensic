@@ -1,14 +1,19 @@
 from django.shortcuts import render
-
+from .models import About, Slider, Service, Member
 # Create your views here.
 
 def home(request):
-    return render(request, "index.html")
+    abouts = About.objects.all()
+    services = Service.objects.all()
+    members = Member.objects.all()
+    return render(request, "index.html", {'abouts': abouts, 'services':services, 'members': members})
 
 def about(request):
-    return render(request, 'about.html')
+    abouts = About.objects.all()
+    return render(request, 'about.html',{'abouts' : abouts})
 
 def service(request):
+    
     return render(request, 'service.html')
 
 def blog(request):
