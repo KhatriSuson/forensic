@@ -8,6 +8,7 @@ def home(request):
     views['abouts'] = About.objects.all()
     views['services'] = Service.objects.all()
     views['members'] = Member.objects.all()
+    views['sliders'] = Slider.objects.all()
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
 
