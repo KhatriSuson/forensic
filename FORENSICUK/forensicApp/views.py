@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact
+from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, Home
 from django.views.generic import View
 # Create your views here.
 
@@ -11,6 +11,9 @@ def home(request):
     views['sliders'] = Slider.objects.all()
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
+    views['homes'] = Home.objects.all()
+    # views['homes'] = Home.objects.all()
+    
 
     if request.method == "POST":
         name = request.POST['name']
@@ -50,4 +53,8 @@ def contact(request):
             message = message
         ).save()
     return render(request, "contact.html")
+
+
+def test(request):
+    return render(request, 'home/test.html')
 

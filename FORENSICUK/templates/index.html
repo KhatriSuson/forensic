@@ -2,13 +2,22 @@
 {% load static %}
 {% block content %}
 
+
   <!-- slider section -->
 
-  {% include 'home/slider.html' %}
+ 
+  <div>
+    
+    
+  </div>
 
   <!-- end slider section -->
 
   <!-- welcome section -->
+   <div>
+    {% include 'home/slider.html' %}
+    <h1>hello world</h1>
+   </div>
   <section class="welcome_section layout_padding">
     <div class="container-fluid">
       {% for about in abouts %}
