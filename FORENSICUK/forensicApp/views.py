@@ -24,7 +24,7 @@ def home(request):
             email = email,
             message = message
         ).save()
-    return render(request, "index.html",views)
+    return render(request, "index.html",views,)
 
 def about(request):
     views = {}
