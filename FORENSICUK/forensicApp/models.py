@@ -36,7 +36,7 @@ class Service(models.Model):
 class Member(models.Model):
     name = models.CharField(max_length=60)
     position = models.CharField(max_length=120)
-    exp = models.IntegerField(max_length=2)
+    exp = models.IntegerField()
     image = models.ImageField(upload_to='media/member')
 
     def __str__(self):
