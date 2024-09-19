@@ -8,40 +8,7 @@
 <!-- end slider section -->
 
 <!-- welcome section -->
-<section class="welcome_section layout_padding">
-  <div class="container-fluid">
-    {% for about in abouts %}
-    <div class="row">
-      <div class=" col-md-6">
-        <div>
-          <img class="img-fluid" src="{{ about.image.url }}" alt="" />
-        </div>
-      </div>
-      <div class=" col-md-6">
-        <div class="welcome_detail">
-          <h3>
-            Welcome
-          </h3>
-          <h2>
-            {{ about.title }}
-          </h2>
-          <p>
-            {{ about.description }}
-          </p>
-          <div class="welcome_detail-btn">
-            <a href="">
-              <span>
-                Read More
-              </span>
-              <img src="" alt="" class="ml-2" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</section>
+{% include 'home/abouts.html' %}
 <!-- end welcome section -->
 
 

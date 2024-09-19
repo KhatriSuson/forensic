@@ -1,12 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-
-{% include 'home/slider.html' %}
-
-{% include 'home/abouts.html' %}
-
-  <!-- <section class="welcome_section layout_padding">
+<section class="welcome_section layout_padding">
     <div class="container-fluid">
       {% for about in abouts %}
       <div class="row">
@@ -31,31 +23,14 @@
                 <span>
                   Read More
                 </span>
-                <img src="{% static 'images/arrow-black.png' %}" alt="" class="ml-2" />
+                <img src="" alt="" class="ml-2" />
               </a>
             </div>
           </div>
         </div>
       </div>
+      <hr>
       {% endfor %}
+     
     </div>
-  </section> -->
-  <!-- end welcome section -->
-  {% include 'home/service.html' %}
-  <!-- end service section -->
-
-  <!-- security section -->
-
-  
-  <!-- end security section -->
-
-
-  <!-- story section -->
-
- {% include 'home/successStory.html' %}
-  
-  {% include 'home/client_feedback.html' %}
-  <!-- contact section -->
-  {% include 'home/contact.html' %}
-  <!-- end contact section -->
- {% endblock %}
+  </section>
