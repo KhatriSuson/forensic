@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, Home
+from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, Home, CarouselItem 
 # Register your models here.
 admin.site.register(About)
 admin.site.register(Slider)
@@ -9,3 +9,4 @@ admin.site.register(SuccessStory)
 admin.site.register(Feedback)
 admin.site.register(Contact)
 admin.site.register(Home)
+admin.site.register(CarouselItem)

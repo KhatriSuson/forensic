@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, Home
+from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, CarouselItem
 from django.views.generic import View
 # Create your views here.
 
@@ -11,7 +11,8 @@ def home(request):
     views['sliders'] = Slider.objects.all()
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
-    views['homes'] = Home.objects.all()
+    # views['homes'] = Home.objects.all()
+    views['carousel_items'] = CarouselItem.objects.all()
     # views['homes'] = Home.objects.all()
     
 
