@@ -21,4 +21,45 @@
         </div>
     </div>
 </section>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'blog_list' %}">Blogs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ blog.title }}</li>
+    </ol>
+</nav>
+
 {% endblock %}
+
+
+<button onclick="scrollToTop()" class="btn btn-primary" id="scrollTopBtn" title="Go to top">Top</button>
+
+<script>
+    // Scroll-to-top functionality
+    window.onscroll = function() {showScrollButton()};
+
+    function showScrollButton() {
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollTopBtn.style.display = "block";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+<style>
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+}
+</style>
+
