@@ -37,6 +37,7 @@
   <!-- responsive style -->
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'css/paginator_style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
 </head>
 
 <body>
@@ -66,7 +67,7 @@
               <a class="nav-link" href="{% url 'service' %}">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+              <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
