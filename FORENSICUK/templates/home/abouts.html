@@ -1,42 +1,5 @@
-<!-- 
-<section class="welcome_section layout_padding">
-    <div class="container-fluid">
-      {% for about in abouts %}
-      <div class="row">
-        <div class=" col-md-6">
-          <div>
-            <img class="img-fluid" src="{{ about.image.url }}" alt="" />
-          </div>
-        </div>
-        <div class=" col-md-6">
-          <div class="welcome_detail">
-            <h3>
-              Welcome
-            </h3>
-            <h2>
-              {{ about.title }}
-            </h2>
-            <p>
-              {{ about.description }}
-            </p>
-            <div class="welcome_detail-btn">
-              <a href="">
-                <span>
-                  Read More
-                </span>
-                <img src="" alt="" class="ml-2" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      {% endfor %}
-     
-    </div>
-  </section> -->
 
-
+{% load static %}
   <style>
     /* General styles */
 * {
@@ -184,7 +147,7 @@ body {
           <div class="welcome_detail-btn">
             <a href="#" class="btn btn-primary">
               <span>Read More</span>
-              <img src="/static/images/arrow-right.svg" alt="arrow" class="ml-2" />
+              <img src="{% static 'images/arrow.png' %}" alt="arrow" class="ml-2" />
             </a>
           </div>
         </div>
@@ -197,37 +160,3 @@ body {
   </div>
 </section>
 
-
-<!-- <section class="welcome_section layout_padding">
-    <div class="container-fluid">
-      {% for about in abouts %}
-      <div class="row align-items-center welcome-row">
-        <div class="col-md-6">
-          <div class="welcome_image">
-            <img class="img-fluid" src="{{ about.image.url }}" alt="Welcome Image" />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="welcome_detail">
-            <h3 class="welcome-heading">
-              Welcome
-            </h3>
-            <h2 class="welcome-title">
-              {{ about.title }}
-            </h2>
-            <p class="welcome-description">
-              {{ about.description }}
-            </p>
-            <div class="welcome_detail-btn">
-              <a href="#" class="btn btn-primary">
-                <span>Read More</span>
-                <img src="/static/images/arrow-right.svg" alt="arrow" class="ml-2" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      {% endfor %}
-    </div>
-</section> -->
