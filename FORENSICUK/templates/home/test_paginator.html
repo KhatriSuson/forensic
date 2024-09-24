@@ -1,23 +1,108 @@
 {% load static %}
-<div class="container"></div>
+
+<style>
+    /* Container styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Blog title styles */
+h1.text-center {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 700;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+}
+
+/* General blog item styles */
+.blog-item {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.blog-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Text styling */
+.blog-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.blog-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Odd rows - Image left, text right */
+.blog-item:nth-child(odd) {
+    flex-direction: row;
+}
+
+.blog-item:nth-child(odd) .col-md-6:nth-child(1) {
+    order: 1;
+}
+
+.blog-item:nth-child(odd) .col-md-6:nth-child(2) {
+    order: 2;
+}
+
+/* Even rows - Text left, image right */
+.blog-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.blog-item:nth-child(even) .col-md-6:nth-child(1) {
+    order: 2;
+}
+
+.blog-item:nth-child(even) .col-md-6:nth-child(2) {
+    order: 1;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .blog-item {
+        flex-direction: column;
+    }
+
+    .blog-item img {
+        margin-bottom: 20px;
+    }
+}
+
+</style>
+<div class="container">
     <h1 class="text-center mb-4">My Blog</h1>
 
     <div id="blog-container">
         <!-- Sample Blog Entries (This should be dynamically generated) -->
-         {% for abouts in about %}
+         {% for about in abouts %}
         <div class="row blog-item">
             <div class="col-md-6">
-                <img src="{{ abouts.image.url }}" alt="Image" class="img-fluid blog-image">
+                <img src="{{ about.image.url }}" alt="Image" class="img-fluid blog-image">
             </div>
             <div class="col-md-6">
-                <h3>{{ abouts.title }}</h3>
-                <p>{{ abouts.description }}</p>
+                <h3>{{ about.title }}</h3>
+                <p>{{ about.description }}</p>
             </div>
         </div>
         {% endfor %}
        
         <!-- Add more blog items as needed -->
     </div>
+</div>
+    
 
     <!-- Pagination -->
     <nav aria-label="Page navigation">

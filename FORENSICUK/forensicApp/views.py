@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, CarouselItem
+from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, CarouselItem,Blog
 from django.views.generic import View
 # Create your views here.
 
@@ -56,6 +56,16 @@ def contact(request):
     return render(request, "contact.html")
 
 
+def blog_list(request):
+    blogs = Blog.objects.all().order_by('-created_at')  # Fetch all blogs, ordered by creation date
+    return render(request, 'blog_list.html', {'blogs': blogs})
+
+
 def test(request):
-    return render(request, 'home/test.html')
+    views = {}
+    views['abouts'] = About.objects.all()
+    return render(request, 'home/test_paginator.html', views)
+
+
+
 
