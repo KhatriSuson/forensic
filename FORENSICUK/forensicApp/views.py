@@ -85,6 +85,9 @@ def blog_list(request):
     blogs = Blog.objects.all().order_by('-created_at')
     return render(request, 'blog_list.html', {'blogs':blogs})
 
+def blog_detail(reqeust, pk):
+    return render(reqeust, 'blog_detail.html', {'blog':blog})
+
 
 def test(request):
     views = {}
