@@ -1,37 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- <section class="blog_section layout_padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center mb-5">
-                <h2 class="section_title">Forensic Insights</h2>
-                <p class="section_subtitle">Stay updated with the latest trends in digital forensics and cybersecurity</p>
-            </div>
-        </div>
-        <div class="row">
-            {% for blog in blogs %}
-            <div class="col-md-4 mb-4 d-flex">
-                <div class="card blog-card h-100">
-                    <img src="{{ blog.image.url }}" class="card-img-top blog-img" alt="{{ blog.title }}">
-                    <div class="card-body">
-                        <h5 class="card-title blog-title">{{ blog.title }}</h5>
-                        <p class="card-text blog-description">{{ blog.description|slice:":150" }}...</p>
-                        <a href="#" class="btn btn-primary btn-read-more">Read More</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <small>Published on: {{ blog.created_at|date:"F j, Y" }}</small>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-            <p>No blogs available at the moment.</p>
-            {% endfor %}
-        </div>
-    </div>
-</section> -->
-
-
 <section class="blog_section layout_padding">
     <div class="container">
         <div class="row">
@@ -41,14 +10,13 @@
             </div>
         </div>
         <div class="row">
-            {% for blog in blogs %}
+            {% for blog in page_obj %}
             <div class="col-md-4 mb-4 d-flex">
                 <div class="card blog-card h-100">
                     <img src="{{ blog.image.url }}" class="card-img-top blog-img" alt="{{ blog.title }}">
                     <div class="card-body">
                         <h5 class="card-title blog-title">{{ blog.title }}</h5>
                         <p class="card-text blog-description">{{ blog.description|slice:":150" }}...</p>
-                        <!-- Read More button now links to the blog detail page -->
                         <a href="{% url 'blog_detail' blog.pk %}" class="btn btn-primary btn-read-more">Read More</a>
                     </div>
                     <div class="card-footer text-muted">
@@ -60,8 +28,30 @@
             <p>No blogs available at the moment.</p>
             {% endfor %}
         </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
     </div>
 </section>
+
+
+
 
 {% endblock %}
 

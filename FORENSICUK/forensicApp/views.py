@@ -63,10 +63,7 @@ def service(request):
     views['members'] = Member.objects.all()
     return render(request, 'service.html', views)
 
-def blog(request):
-    views = {}
-    views['blogs'] = SuccessStory.objects.all()
-    return render(request, 'blog.html', views)
+
 
 def contact(request):
     if request.method == "POST":
@@ -83,7 +80,18 @@ def contact(request):
 
 def blog_list(request):
     blogs = Blog.objects.all().order_by('-created_at')
-    return render(request, 'blog_list.html', {'blogs':blogs})
+    paginator = Paginator(blogs, 3)  # Customize the number of items as needed
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'blog_list.html', context)
+    
+    # return render(request, 'blog_list.html', {'blogs':blogs})
+
+
 
 def blog_detail(reqeust, pk):
     blog = get_object_or_404(Blog, pk=pk)
