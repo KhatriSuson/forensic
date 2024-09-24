@@ -82,8 +82,8 @@ def contact(request):
 
 
 def blog_list(request):
-    blogs = Blog.objects.all().order_by('-created_at')  # Fetch all blogs, ordered by creation date
-    return render(request, 'blog_list.html', {'blogs': blogs})
+    blogs = Blog.objects.all().order_by('-created_at')
+    return render(request, 'blog_list.html', {'blogs':blogs})
 
 
 def test(request):
