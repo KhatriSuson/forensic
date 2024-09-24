@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, CarouselItem,Blog
 from django.views.generic import View
@@ -86,6 +86,7 @@ def blog_list(request):
     return render(request, 'blog_list.html', {'blogs':blogs})
 
 def blog_detail(reqeust, pk):
+    blog = get_object_or_404(Blog, pk=pk)
     return render(reqeust, 'blog_detail.html', {'blog':blog})
 
 
