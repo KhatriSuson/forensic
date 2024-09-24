@@ -1,3 +1,4 @@
+<!-- 
 <section class="welcome_section layout_padding">
     <div class="container-fluid">
       {% for about in abouts %}
@@ -33,4 +34,200 @@
       {% endfor %}
      
     </div>
-  </section>
+  </section> -->
+
+
+  <style>
+    /* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Welcome Section */
+.welcome_section {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+.welcome-row {
+    margin-bottom: 30px;
+}
+
+.welcome_image img {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInLeft 1s ease;
+}
+
+.welcome_detail {
+    padding: 20px;
+    animation: fadeInRight 1s ease;
+}
+
+.welcome-heading {
+    color: #007bff;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.welcome-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.welcome-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.welcome_detail-btn .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.welcome_detail-btn .btn:hover {
+    background-color: #0056b3;
+}
+
+.welcome_detail-btn img {
+    width: 15px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.welcome_detail-btn .btn:hover img {
+    transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-row {
+        flex-direction: column-reverse;
+    }
+
+    .welcome_image img, .welcome_detail {
+        width: 100%;
+    }
+
+    .welcome-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 576px) {
+    .welcome-title {
+        font-size: 24px;
+    }
+
+    .welcome_description {
+        font-size: 14px;
+    }
+
+    .welcome_detail-btn .btn {
+        font-size: 14px;
+    }
+}
+
+</style>
+
+<section class="welcome_section layout_padding">
+  <div class="container-fluid">
+    {% for about in page_obj %}
+    <div class="row align-items-center welcome-row">
+      <div class="col-md-6">
+        <div class="welcome_image">
+          <img class="img-fluid" src="{{ about.image.url }}" alt="Welcome Image" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="welcome_detail">
+          <h3 class="welcome-heading">Welcome</h3>
+          <h2 class="welcome-title">{{ about.title }}</h2>
+          <p class="welcome-description">{{ about.description }}</p>
+          <div class="welcome_detail-btn">
+            <a href="#" class="btn btn-primary">
+              <span>Read More</span>
+              <img src="/static/images/arrow-right.svg" alt="arrow" class="ml-2" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    {% endfor %}
+
+  
+  </div>
+</section>
+
+
+<!-- <section class="welcome_section layout_padding">
+    <div class="container-fluid">
+      {% for about in abouts %}
+      <div class="row align-items-center welcome-row">
+        <div class="col-md-6">
+          <div class="welcome_image">
+            <img class="img-fluid" src="{{ about.image.url }}" alt="Welcome Image" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="welcome_detail">
+            <h3 class="welcome-heading">
+              Welcome
+            </h3>
+            <h2 class="welcome-title">
+              {{ about.title }}
+            </h2>
+            <p class="welcome-description">
+              {{ about.description }}
+            </p>
+            <div class="welcome_detail-btn">
+              <a href="#" class="btn btn-primary">
+                <span>Read More</span>
+                <img src="/static/images/arrow-right.svg" alt="arrow" class="ml-2" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      {% endfor %}
+    </div>
+</section> -->

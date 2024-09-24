@@ -1,36 +1,61 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, CarouselItem,Blog
 from django.views.generic import View
 # Create your views here.
 
 def home(request):
+    # Context dictionary to pass data to the template
     views = {}
-    views['abouts'] = About.objects.all()
     views['services'] = Service.objects.all()
     views['members'] = Member.objects.all()
     views['sliders'] = Slider.objects.all()
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
-    # views['homes'] = Home.objects.all()
     views['carousel_items'] = CarouselItem.objects.all()
-    # views['homes'] = Home.objects.all()
-    
 
+    # Paginate the abouts queryset, displaying 2 items per page
+    abouts = About.objects.all()
+    paginator = Paginator(abouts, 2)  # 2 items per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    # Add the paginated abouts to the context
+    views['page_obj'] = page_obj
+
+    # Handle POST request for contact form submission
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
         message = request.POST['message']
+        
+        # Create a new contact entry
         Contact.objects.create(
-            name = name,
-            email = email,
-            message = message
+            name=name,
+            email=email,
+            message=message
         ).save()
-    return render(request, "index.html",views,)
+        
+        # Optionally redirect to avoid form resubmission on page refresh
+        return redirect('home')
+
+    # Render the template with the context
+    return render(request, "index.html", views)
+
+    
 
 def about(request):
-    views = {}
-    views['abouts'] = About.objects.all()
-    return render(request, 'about.html',views)
+    abouts = About.objects.all()
+
+    # You can paginate the abouts queryset here as well for the "About Us" page
+    paginator = Paginator(abouts, 2)  # Customize the number of items as needed
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'about.html', context)
 
 def service(request):
     views = {}
