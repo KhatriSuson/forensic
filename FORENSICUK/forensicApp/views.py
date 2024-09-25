@@ -57,6 +57,10 @@ def about(request):
     }
     return render(request, 'about.html', context)
 
+def about_detail(reqeust, pk):
+    about = get_object_or_404(About, pk=pk)
+    return render(reqeust, 'about_detail.html', {'about':about})
+
 def service(request):
     views = {}
     views['services'] = Service.objects.all()
@@ -80,7 +84,7 @@ def contact(request):
 
 def blog_list(request):
     blogs = Blog.objects.all().order_by('-created_at')
-    paginator = Paginator(blogs, 3)  # Customize the number of items as needed
+    paginator = Paginator(blogs, 6)  # Customize the number of items as needed
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -89,9 +93,6 @@ def blog_list(request):
     }
     return render(request, 'blog_list.html', context)
     
-    # return render(request, 'blog_list.html', {'blogs':blogs})
-
-
 
 def blog_detail(reqeust, pk):
     blog = get_object_or_404(Blog, pk=pk)
