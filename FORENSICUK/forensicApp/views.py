@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
-from .models import About, Slider, Service, Member, SuccessStory, Feedback, Contact, CarouselItem,Blog
+from .models import About, Service, Member, SuccessStory, Feedback, Contact, CarouselItem,Blog
 from django.views.generic import View
 # Create your views here.
 
@@ -9,7 +9,6 @@ def home(request):
     views = {}
     views['services'] = Service.objects.all()
     views['members'] = Member.objects.all()
-    views['sliders'] = Slider.objects.all()
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
     views['carousel_items'] = CarouselItem.objects.all()
