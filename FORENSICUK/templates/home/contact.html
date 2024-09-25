@@ -1,43 +1,95 @@
+
+
 <style>
-    .contact-section {
-        padding: 60px 0;
-        background-color: #f8f9fa;
-    }
-    .contact-info {
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    }
-    .contact-form {
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    }
-    .map-container {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    }
-    .btn-submit {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        transition: background-color 0.3s ease;
-    }
-    .btn-submit:hover {
-        background-color: #0056b3;
-    }
+    /* Global Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Contact Section */
+.contact-section {
+    background: linear-gradient(135deg, #2C3E50, #4CA1AF);
+    color: #fff;
+}
+
+.contact-info {
+    background-color: #34495E;
+    color: #ffffff;
+}
+
+.contact-form {
+    background-color: #ffffff;
+    color: #333;
+}
+
+h2, h4 {
+    color: #f8f9fa;
+}
+
+/* Form Styles */
+.form-control {
+    border: 2px solid #4CA1AF;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #1ABC9C;
+    box-shadow: none;
+    background-color: #f9f9f9;
+}
+
+/* Submit Button */
+.btn-submit {
+    background-color: #4CA1AF;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #1ABC9C;
+    transform: scale(1.05);
+}
+
+/* Google Map Styles */
+#map {
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#map:hover {
+    transform: scale(1.02);
+}
+
+/* Input Label Animation */
+.animated-input {
+    position: relative;
+    padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.animated-input:focus {
+    outline: none;
+    background-color: #f9f9f9;
+}
+
+/* Map and Form Container */
+.shadow-sm {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 </style>
-<section class="contact-section">
+
+<section class="contact-section py-5">
     <div class="container">
         <h2 class="text-center mb-5">Contact Us</h2>
         <div class="row">
             <!-- Contact Information -->
-            <div class="col-md-6">
-                <div class="contact-info">
-                    <h4>Get in Touch</h4>
+            <div class="col-md-6 mb-4">
+                <div class="contact-info p-4 rounded shadow-sm">
+                    <h4 class="mb-3">Get in Touch</h4>
                     <p>Feel free to reach out to us for any inquiries, consultations, or support. Our team is ready to assist you with any forensic needs.</p>
                     <ul class="list-unstyled">
                         <li><strong>Address:</strong> 123 Forensic Ave, Suite 101, Cyber City</li>
@@ -46,48 +98,38 @@
                         <li><strong>Working Hours:</strong> Mon - Fri: 9:00 AM - 6:00 PM</li>
                     </ul>
                 </div>
-
-                <div style="display: flex; justify-content: center;">
-                    <div id="map" style="height: 400px; width: 800px;">
-                        <div class="row mt-5">
-                            <div class="col-md-12">
-                                <div class="map-container">
-                                    <!-- Replace the src link with your Google Maps embed link -->
-                                    <iframe src="https://www.google.com.np/maps/place/Beech+Grove,+IN,+USA/@39.7131288,-86.1041264,14z/data=!4m6!3m5!1s0x886b452613c9210d:0x12ee0dfe9badb018!8m2!3d39.7219884!4d-86.0899847!16zL20vMHNubHo?entry=ttu&g_ep=EgoyMDI0MDkxOC4xIKXMDSoASAFQAw%3D%3D" width="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Google Map -->
+                <div id="map" class="mt-4 shadow-sm" style="height: 400px; border-radius: 10px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.0872420141666!2d-86.1041264!3d39.7131288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886b452613c9210d%3A0x12ee0dfe9badb018!2sBeech%20Grove%2C%20IN%2C%20USA!5e0!3m2!1sen!2snp!4v1648989234516!5m2!1sen!2snp" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
 
             <!-- Contact Form -->
             <div class="col-md-6">
-                <div class="contact-form">
-                    <h4>Send Us a Message</h4>
+                <div class="contact-form p-4 rounded shadow-sm">
+                    <h4 class="mb-3" style="color: black;">Send Us a Message</h4>
                     <form method="post">
                         {% csrf_token %}
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required name="name">
+                            <input type="text" class="form-control animated-input" id="name" placeholder="Enter your name" required name="name">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required name="email">
+                            <input type="email" class="form-control animated-input" id="email" placeholder="Enter your email" required name="email">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="message">Message</label>
-                            <textarea class="form-control" id="message" rows="4" placeholder="Enter your message" required name="message"></textarea>
+                            <textarea class="form-control animated-input" id="message" rows="4" placeholder="Enter your message" required name="message"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-submit">Submit</button>
+                        <button type="submit" class="btn btn-submit w-100 py-2">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!-- Map Section -->
-       
     </div>
+</section>
+
 
 
 
