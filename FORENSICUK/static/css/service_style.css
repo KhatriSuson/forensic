@@ -25,11 +25,24 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.service-img {
+.service-img-wrapper {
+    position: relative;
     height: 200px;
-    object-fit: cover;
+    overflow: hidden;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.service-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+.service-card:hover .service-img {
+    transform: scale(1.1);
+    filter: brightness(85%);
 }
 
 .card-body {
@@ -62,18 +75,6 @@
     .card-text {
         font-size: 0.9rem;
     }
-}
-
-/* Service Image Hover Effect */
-.service-card:hover .service-img {
-    filter: brightness(85%);
-    transition: filter 0.3s ease;
-}
-
-/* Add subtle shadow on image */
-.service-img {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transition: box-shadow 0.3s ease;
 }
 
 /* Fade-in animation for services */

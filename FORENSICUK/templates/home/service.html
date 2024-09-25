@@ -2,13 +2,14 @@
   <!-- service section -->
   <section id="services" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Our Forensic Services</h2>
+        <h2 class="text-center mb-5 display-4 font-weight-bold">Our Forensic Services</h2>
         <div class="row g-4">
           {% for service in services %}
-            <!-- Service 1 -->
-            <div class="col-md-4">
+            <div class="col-md-6 col-lg-4">
                 <div class="card service-card h-100 shadow-sm">
-                    <img src="{{ service.image.url }}" class="card-img-top service-img" alt="Digital Forensics">
+                    <div class="service-img-wrapper">
+                        <img src="{{ service.image.url }}" class="card-img-top service-img" alt="{{ service.title }}">
+                    </div>
                     <div class="card-body text-center">
                         <h5 class="card-title mt-3">{{ service.title }}</h5>
                         <p class="card-text">{{ service.discription }}</p>
@@ -20,8 +21,9 @@
     </div>
 </section>
 
+
 <script>
-  // Smooth scroll to the services section when clicked from navigation
+// Smooth scroll to the services section when clicked from navigation
 document.querySelectorAll('a[href^="#services"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
