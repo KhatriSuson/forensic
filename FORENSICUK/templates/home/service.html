@@ -19,50 +19,37 @@
         </div>
     </div>
 </section>
-  <!-- end service section -->
 
-  <!-- security section -->
+<script>
+  // Smooth scroll to the services section when clicked from navigation
+document.querySelectorAll('a[href^="#services"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
 
-  <!-- <section class="security_section layout_padding">
-    <h3>
-      Security
+// Scroll-based animation for service cards (fade-in effect)
+const serviceCards = document.querySelectorAll('.service-card');
 
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+        } else {
+            entry.target.classList.remove('fade-in');
+        }
+    });
+}, {
+    threshold: 0.2
+});
 
-    </h3>
-    <h2>
-      Our Guard
-    </h2>
-    <div class="security_container">
-      <div class="carousel-wrap">
-        <div class="owl-carousel">
-          <div class="item">
-            <div class="security_img-box i-box-1">
-              <a href=""> View More</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="security_img-box i-box-2">
-              <a href=""> View More</a>
-            </div>
-          </div>
-          <div class="item">
-            <div class="security_img-box i-box-3">
-              <a href=""> View More</a>
-            </div>
-          </div>
+serviceCards.forEach(card => {
+    observer.observe(card);
+});
 
-        </div>
-      </div>
-    </div>
-    <div class="security_btn">
-      <a href="">
-        <span>
-          Read More
-        </span>
-        <img src="images/arrow-black.png" alt="" class="ml-2" />
-      </a>
-    </div>
-  </section> -->
-
+</script> 
   {% include 'home/staff.html' %}
-  <!-- end security section -->
+ 
