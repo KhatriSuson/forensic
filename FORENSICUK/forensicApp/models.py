@@ -10,21 +10,21 @@ from django.db import models
 #     def __str__(self):
 #         return self.title
     
-class Home(models.Model):
-    image = models.ImageField(upload_to='media/home')
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=200)
+# class Home(models.Model):
+#     image = models.ImageField(upload_to='media/home')
+#     title = models.CharField(max_length=100)
+#     description = models.CharField(max_length=200)
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
 
-class Slider(models.Model):
-    image = models.ImageField(upload_to='media/home')
-    title = models.CharField(max_length=200)
-    dis = models.TextField()
+# class Slider(models.Model):
+#     image = models.ImageField(upload_to='media/home')
+#     title = models.CharField(max_length=200)
+#     dis = models.TextField()
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
     
 class About(models.Model):
     title = models.CharField(max_length=100)
