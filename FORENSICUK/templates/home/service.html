@@ -1,25 +1,20 @@
 {% load static %}
   <!-- service section -->
-  <section id="services" class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5 display-4 font-weight-bold">Our Forensic Services</h2>
-        <div class="row g-4">
-          {% for service in services %}
-            <div class="col-md-6 col-lg-4">
-                <div class="card service-card h-100 shadow-sm">
-                    <div class="service-img-wrapper">
-                        <img src="{{ service.image.url }}" class="card-img-top service-img" alt="{{ service.title }}">
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title mt-3">{{ service.title }}</h5>
-                        <p class="card-text">{{ service.discription }}</p>
-                    </div>
-                </div>
-            </div>
-          {% endfor %}
+  <div class="row g-4">
+    {% for service in page_obj %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card service-card h-100 shadow-sm">
+          <div class="service-img-wrapper">
+            <img src="{{ service.image.url }}" class="card-img-top service-img" alt="{{ service.title }}">
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title mt-3">{{ service.title }}</h5>
+            <p class="card-text">{{ service.description }}</p>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    {% endfor %}
+  </div>
 
 
 
