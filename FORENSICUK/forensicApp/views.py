@@ -48,7 +48,7 @@ def about(request):
     abouts = About.objects.all()
 
     # You can paginate the abouts queryset here as well for the "About Us" page
-    paginator = Paginator(abouts, 2)  # Customize the number of items as needed
+    paginator = Paginator(abouts, 3)  # Customize the number of items as needed
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
