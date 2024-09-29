@@ -47,6 +47,7 @@ class Member(models.Model):
     position = models.CharField(max_length=120)
     exp = models.IntegerField()
     image = models.ImageField(upload_to='media/member')
+    member_url = models.URLField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.name
