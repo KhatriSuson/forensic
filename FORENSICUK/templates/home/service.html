@@ -4,7 +4,7 @@
     <div class="container">
         <h2 class="text-center mb-5 display-4 font-weight-bold">Our Forensic Services</h2>
         <div class="row g-4">
-          {% for service in services %}
+          {% for service in service_page_obj %}
             <div class="col-md-6 col-lg-4">
                 <div class="card service-card h-100 shadow-sm">
                     <div class="service-img-wrapper">
@@ -12,14 +12,20 @@
                     </div>
                     <div class="card-body text-center">
                         <h5 class="card-title mt-3">{{ service.title }}</h5>
-                        <p class="card-text">{{ service.discription }}</p>
+                        <p class="card-text">{{ service.description }}</p>
                     </div>
                 </div>
             </div>
+          {% empty %}
+            <p class="text-center">No services available at the moment.</p>
           {% endfor %}
         </div>
+
+        <!-- Pagination controls for services -->
+      
     </div>
 </section>
+
 
 
 
