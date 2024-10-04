@@ -6,56 +6,10 @@
 
 {% include 'home/abouts.html' %}
 
-  <!-- <section class="welcome_section layout_padding">
-    <div class="container-fluid">
-      {% for about in abouts %}
-      <div class="row">
-        <div class=" col-md-6">
-          <div>
-            <img class="img-fluid" src="{{ about.image.url }}" alt="" />
-          </div>
-        </div>
-        <div class=" col-md-6">
-          <div class="welcome_detail">
-            <h3>
-              Welcome
-            </h3>
-            <h2>
-              {{ about.title }}
-            </h2>
-            <p>
-              {{ about.description }}
-            </p>
-            <div class="welcome_detail-btn">
-              <a href="">
-                <span>
-                  Read More
-                </span>
-                <img src="{% static 'images/arrow-black.png' %}" alt="" class="ml-2" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </section> -->
-  <!-- end welcome section -->
-  {% include 'home/service.html' %}
-  <!-- end service section -->
-
-  <!-- security section -->
-
-  
-  <!-- end security section -->
-
-
-  <!-- story section -->
+  <!-- {% include 'home/service.html' %} -->
 
  {% include 'home/successStory.html' %}
   
   {% include 'home/client_feedback.html' %}
-  <!-- contact section -->
   {% include 'home/contact.html' %}
-  <!-- end contact section -->
  {% endblock %}
