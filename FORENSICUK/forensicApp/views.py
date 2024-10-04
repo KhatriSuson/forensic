@@ -13,6 +13,7 @@ def home(request):
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
     views['carousel_items'] = CarouselItem.objects.all()
+    views['services'] = Service.objects.all()
     
     # Paginate the 'About' queryset, displaying 2 items per page
     abouts = About.objects.all()
@@ -22,11 +23,6 @@ def home(request):
     views['about_page_obj'] = about_page_obj
     
     # Paginate the 'Service' queryset, displaying 5 items per page
-    services = Service.objects.all()
-    service_paginator = Paginator(services, 5)  # 5 items per page for 'Service'
-    service_page_number = request.GET.get('service_page')  # Using 'service_page' for pagination
-    service_page_obj = service_paginator.get_page(service_page_number)
-    views['service_page_obj'] = service_page_obj
     
     # Handle POST request for contact form submission
     if request.method == "POST":
@@ -67,15 +63,8 @@ def about_detail(reqeust, pk):
     return render(reqeust, 'about_detail.html', {'about':about})
 
 def services_view(request):
-    views = {}
-    views['members'] = Member.objects.all()
-    
-    services = Service.objects.all()
-    paginator = Paginator(services,3)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    views['page_obj'] = page_obj
-    return render(request, 'service.html', views)
+   
+    return render(request, 'service.html')
 
 
 

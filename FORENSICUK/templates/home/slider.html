@@ -165,49 +165,8 @@ body {
                         <a href="{{ item.button_url }}" target="_blank" class="btn btn-lg btn-primary mt-3 mt-md-4 px-4">{{ item.button_text }}</a>
                     {% endif %}
                 </div>
-            </div><script>
-document.addEventListener('DOMContentLoaded', function () {
-    const blogCarousel = document.querySelector('#blog-carousel');
-    const carouselInstance = new bootstrap.Carousel(blogCarousel, {
-        interval: false, // Disable automatic slide to manually control with arrows
-        pause: 'hover',
-        wrap: true
-    });
+            </div>
 
-    const carouselItems = document.querySelectorAll('.carousel-item video');
-
-    // Pause videos when slides change
-    blogCarousel.addEventListener('slide.bs.carousel', function (event) {
-        const activeVideo = event.relatedTarget.querySelector('video');
-        const allVideos = blogCarousel.querySelectorAll('video');
-
-        allVideos.forEach(function(video) {
-            video.pause();  // Pause all videos when sliding
-        });
-
-        if (activeVideo) {
-            activeVideo.play(); // Play the active slide's video
-        }
-    });
-
-    // Ensure video plays when slide is visible
-    blogCarousel.addEventListener('slid.bs.carousel', function () {
-        const activeVideo = blogCarousel.querySelector('.carousel-item.active video');
-        if (activeVideo) {
-            activeVideo.play();
-        }
-    });
-
-    // Custom prev/next button events
-    document.querySelector('.carousel-control-prev').addEventListener('click', function () {
-        carouselInstance.prev();
-    });
-
-    document.querySelector('.carousel-control-next').addEventListener('click', function () {
-        carouselInstance.next();
-    });
-});
-</script>
 
             {% endfor %}
         </div>
