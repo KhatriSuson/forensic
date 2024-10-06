@@ -62,8 +62,9 @@ def about_detail(reqeust, pk):
     return render(reqeust, 'about_detail.html', {'about':about})
 
 def services_view(request):
+    services = Service.objects.all()
    
-    return render(request, 'service.html')
+    return render(request, 'service.html', {'services':services})
 
 
 
