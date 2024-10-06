@@ -14,6 +14,18 @@
   <meta name="author" content="" />
 
   <title>Forensic as Services</title>
+  <style>
+      .list-unstyled a:hover {
+    text-decoration: underline;
+  }
+  .col-md-4 h5 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  </style>
 
   <!-- map link  -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -86,7 +98,7 @@
 <section class="info_section layout_padding">
     <div class="container">
       <div class="row">
-        <div class=" col-md-4 info_detail">
+        <!-- <div class=" col-md-4 info_detail">
           <div>
             <p>
               <b>Uncover the truth with precision forensics. Fast, reliable, 
@@ -95,7 +107,17 @@
               
             </p>
           </div>
-        </div>
+        </div> -->
+
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+              <li><a href="/" class="text-white">Home</a></li>
+              <li><a href="{% url 'about' %}" class="text-white">About Us</a></li>
+              <li><a href="{% url 'sercice' %}" class="text-white">Services</a></li>
+              <li><a href="{% url 'contact' %}" class="text-white">Contact</a></li>
+          </ul>
+      </div>
         <div class=" col-md-4 address_container">
           <div>
             <h3>

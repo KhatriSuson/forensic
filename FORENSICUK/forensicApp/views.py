@@ -7,23 +7,22 @@ from django.views.generic import View
 def home(request):
     # Context dictionary to pass data to the template
     views = {}
-    
-    # Fetch all objects to pass to the template
+    views['services'] = Service.objects.all()
     views['members'] = Member.objects.all()
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
     views['carousel_items'] = CarouselItem.objects.all()
-    views['services'] = Service.objects.all()
-    
-    # Paginate the 'About' queryset, displaying 2 items per page
+
+    # Paginate the abouts queryset, displaying 2 items per page
     abouts = About.objects.all()
-    about_paginator = Paginator(abouts, 2)  # 2 items per page for 'About'
-    about_page_number = request.GET.get('about_page')  # Using 'about_page' for pagination
-    about_page_obj = about_paginator.get_page(about_page_number)
-    views['about_page_obj'] = about_page_obj
+    paginator = Paginator(abouts, 2)  # 2 items per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     
-    # Paginate the 'Service' queryset, displaying 5 items per page
-    
+    # Add the paginated abouts to the context
+    views['page_obj'] = page_obj
+   
+
     # Handle POST request for contact form submission
     if request.method == "POST":
         name = request.POST['name']
