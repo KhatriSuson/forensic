@@ -68,16 +68,6 @@ def services_view(request):
 
 
 
-# def services_view(request):
-#     # Assuming `services` is a QuerySet of service objects
-#     services = Service.objects.all()
-
-#     # Set up pagination
-#     paginator = Paginator(services, 2)  # Show 6 services per page
-#     page_number = request.GET.get('page')  # Get the page number from the URL
-#     page_obj = paginator.get_page(page_number)  # Get the relevant page
-#     return render(request, 'service.html', {'page_obj': page_obj})
-
 
 def contact(request):
     if request.method == "POST":
@@ -94,7 +84,7 @@ def contact(request):
 
 def blog_list(request):
     blogs = Blog.objects.all().order_by('-created_at')
-    paginator = Paginator(blogs, 2)  # Customize the number of items as needed
+    paginator = Paginator(blogs, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
