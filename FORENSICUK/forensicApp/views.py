@@ -7,7 +7,7 @@ from django.views.generic import View
 def home(request):
     # Context dictionary to pass data to the template
     views = {}
-    views['services'] = Service.objects.all()
+    # views['services'] = Service.objects.all()
     views['members'] = Member.objects.all()
     views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
@@ -21,6 +21,12 @@ def home(request):
     
     # Add the paginated abouts to the context
     views['page_obj'] = page_obj
+    
+    services = Service.objects.all()
+    paginator = Paginator(services, 3)  # Customize the number of items as needed
+    page_number = request.GET.get('page')
+    page_obj_service = paginator.get_page(page_number)
+    views['page_obj_service'] = page_obj_service
    
 
     # Handle POST request for contact form submission
