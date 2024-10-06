@@ -68,9 +68,16 @@ def about_detail(reqeust, pk):
     return render(reqeust, 'about_detail.html', {'about':about})
 
 def services_view(request):
+    
     services = Service.objects.all()
+    paginator = Paginator(services, 6)  # Customize the number of items as needed
+    page_number = request.GET.get('page')
+    page_obj_service = paginator.get_page(page_number)
+    context = {
+        'page_obj_service': page_obj_service,
+    }
    
-    return render(request, 'service.html', {'services':services})
+    return render(request, 'service.html', context)
 
 
 

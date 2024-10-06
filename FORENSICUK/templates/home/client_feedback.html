@@ -1,52 +1,67 @@
-{% load static %}
 <style>
     .feedback-section {
-        padding: 60px 0;
-        background-color: #e9ecef;
-    }
-    .carousel-item {
-        transition: transform 0.5s ease-in-out;
-    }
-    .feedback-card {
-        border: none;
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #fff;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    }
-    .client-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 15px;
-    }
-    .client-name {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #343a40;
-    }
-    .client-role {
-        color: #6c757d;
-        font-size: 0.9rem;
-    }
-    .testimonial-text {
-        font-style: italic;
-        color: #495057;
-    }
-</style>
+    background-color: #f8f9fa; /* Soft background */
+    color: #333; /* Text color */
+}
 
-<section class="feedback-section text-center">
+.feedback-card {
+    background-color: #fff;
+    border-radius: 15px;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.5s ease; /* Smooth scaling effect */
+}
+
+.feedback-card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+.client-img {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #f8f9fa; /* Frame around image */
+}
+
+.client-name {
+    font-size: 1.25rem; /* Larger name font */
+    color: #007bff; /* Bootstrap primary color for name */
+}
+
+.testimonial-text {
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.carousel-control-prev-icon, 
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); /* Make controls more visible */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.carousel-control-prev-icon:hover, 
+.carousel-control-next-icon:hover {
+    background-color: #007bff; /* Highlight controls on hover */
+}
+.mb-5 {
+    margin-bottom: 3rem !important;
+    color: rgb(9, 10, 10);
+}
+
+</style>
+  <!-- service section -->
+  <section class="feedback-section text-center py-5">
     <div class="container">
         <h2 class="mb-5">What Our Clients Say</h2>
         <div id="feedbackCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 {% for feedback in feedbacks %}
-                <div class="carousel-item active">
-                    <div class="feedback-card mx-auto">
-                        <img src="{{ feedback.image.url }}" alt="Client 1" class="client-img mx-auto d-block">
-                        <p class="client-name">{{ feedback.name }}</p>
-                        <p class="testimonial-text">"{{ feedback.message }}"</p>
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="feedback-card mx-auto p-4">
+                        <img src="{{ feedback.image.url }}" alt="Client {{ feedback.name }}" class="client-img mx-auto d-block rounded-circle shadow">
+                        <p class="client-name mt-4 font-weight-bold">{{ feedback.name }}</p>
+                        <p class="testimonial-text text-muted">"{{ feedback.message }}"</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -64,3 +79,16 @@
 </section>
 
 
+
+
+
+<script>
+    $(document).ready(function() {
+    $('#feedbackCarousel').carousel({
+        interval: 4000, // Auto-slide every 4 seconds
+        pause: 'hover'  // Pause on hover
+    });
+});
+
+
+</script> 
