@@ -9,7 +9,6 @@ def home(request):
     views = {}
     # views['services'] = Service.objects.all()
     views['members'] = Member.objects.all()
-    views['blogs'] = SuccessStory.objects.all()
     views['feedbacks'] = Feedback.objects.all()
     views['carousel_items'] = CarouselItem.objects.all()
 
