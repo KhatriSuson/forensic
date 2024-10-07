@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog
-from django.views.generic import View
 # Create your views here.
 
 def home(request):
     # Context dictionary to pass data to the template
     views = {}
-    # views['services'] = Service.objects.all()
     views['members'] = Member.objects.all()
     views['feedbacks'] = Feedback.objects.all()
     views['carousel_items'] = CarouselItem.objects.all()
@@ -110,11 +108,6 @@ def blog_detail(reqeust, pk):
     blog = get_object_or_404(Blog, pk=pk)
     return render(reqeust, 'blog_detail.html', {'blog':blog})
 
-
-def test(request):
-    views = {}
-    views['abouts'] = About.objects.all()
-    return render(request, 'home/test_paginator.html', views)
 
 
 
