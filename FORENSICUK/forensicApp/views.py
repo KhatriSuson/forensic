@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
-from .models import About, Service, Member, SuccessStory, Feedback, Contact, CarouselItem,Blog
+from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog
 from django.views.generic import View
 # Create your views here.
 
