@@ -12,28 +12,28 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-
   <title>Forensic as Services</title>
   <style>
-      .list-unstyled a:hover {
-    text-decoration: underline;
-  }
-  .col-md-4 h5 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 20px;
-  }
+    .list-unstyled a:hover {
+      text-decoration: underline;
+    }
 
+    .col-md-4 h5 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 20px;
+    }
   </style>
 
   <!-- map link  -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  
+
 
   <!-- slider stylesheet -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
@@ -48,7 +48,7 @@
   <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <!-- responsive style -->
   <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
-  <link rel="stylesheet" href="{% static 'css/paginator_style.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/paginator_style.css' %}" />
   <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
   <link rel="stylesheet" href="{% static 'css/services.css' %}">
 </head>
@@ -60,7 +60,8 @@
       <nav class="navbar navbar-expand-lg custom_nav-container ">
         <a class="navbar-brand" href="/">
           <div class="logo_box">
-            <img src="{% static 'images/forensic_service_logo.jpeg' %}" alt="" style="border-radius: 50%; height: 50px; width: 50px;">
+            <img src="{% static 'images/forensic_service_logo.jpeg' %}" alt=""
+              style="border-radius: 50%; height: 50px; width: 50px;">
           </div>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -85,39 +86,28 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contact' %}">Contact us</a>
             </li>
-          
+
         </div>
       </nav>
     </div>
   </header>
   <!-- end header section -->
-{% block content %}
+  {% block content %}
 
-{% endblock %}
+  {% endblock %}
 
-<section class="info_section layout_padding">
+  <section class="info_section layout_padding">
     <div class="container">
       <div class="row">
-        <!-- <div class=" col-md-4 info_detail">
-          <div>
-            <p>
-              <b>Uncover the truth with precision forensics. Fast, reliable, 
-                and accurate digital forensic solutions at your fingertips, empowering investigations
-                 and turning data into defensible evidence when it matters most.</b>
-              
-            </p>
-          </div>
-        </div> -->
-
         <div class="col-md-4">
           <h5>Quick Links</h5>
           <ul class="list-unstyled">
-              <li><a href="/" class="text-white">Home</a></li>
-              <li><a href="{% url 'about' %}" class="text-white">About Us</a></li>
-              <li><a href="{% url 'service' %}" class="text-white">Services</a></li>
-              <li><a href="{% url 'contact' %}" class="text-white">Contact</a></li>
+            <li><a href="/" class="text-white">Home</a></li>
+            <li><a href="{% url 'about' %}" class="text-white">About Us</a></li>
+            <li><a href="{% url 'service' %}" class="text-white">Services</a></li>
+            <li><a href="{% url 'contact' %}" class="text-white">Contact</a></li>
           </ul>
-      </div>
+        </div>
         <div class=" col-md-4 address_container">
           <div>
             <h3>
@@ -161,20 +151,23 @@
             </div>
             <div class="social_container">
               <div>
-                <a href="https://www.facebook.com/profile.php?id=61559730631595" target="_blank"><img src="{% static 'images/fb.png' %}" alt=""></a>
-                
+                <a href="https://www.facebook.com/profile.php?id=61559730631595" target="_blank"><img
+                    src="{% static 'images/fb.png' %}" alt=""></a>
+
               </div>
               <div>
-                <a href="https://www.linkedin.com/company/digitalforensic-uk/posts/?feedView=all"target="_blank"><img src="{% static 'images/twitter.png' %}" alt=""></a>
-                
+                <a href="https://www.linkedin.com/company/digitalforensic-uk/posts/?feedView=all" target="_blank"><img
+                    src="{% static 'images/twitter.png' %}" alt=""></a>
+
               </div>
               <div>
-                <a href="https://www.linkedin.com/company/digitalforensic-uk/posts/?feedView=all"target="_blank"><img src="{% static 'images/linkedin.png' %}" alt=""></a>
-                
+                <a href="https://www.linkedin.com/company/digitalforensic-uk/posts/?feedView=all" target="_blank"><img
+                    src="{% static 'images/linkedin.png' %}" alt=""></a>
+
               </div>
               <div>
                 <a href=""><img src="{% static 'images/youtube.png' %}" alt=""></a>
-                
+
               </div>
             </div>
           </div>
@@ -184,7 +177,6 @@
   </section>
 
   <!-- end info section -->
-
 
   <!-- footer section -->
   <section class="container-fluid footer_section">
@@ -227,16 +219,16 @@
         event.preventDefault();
         $(".nav_search-input")
           .animate({
-              left: "-1000px"
-            },
+            left: "-1000px"
+          },
             "1000000"
           )
           .removeClass("d-none");
       } else {
         $(".nav_search-input")
           .animate({
-              left: "0px"
-            },
+            left: "0px"
+          },
             "1000000"
           )
           .addClass("d-none");
@@ -270,9 +262,13 @@
   <!-- google map js -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+
   <!-- end google map js -->
 
 </body>
