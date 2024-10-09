@@ -1,176 +1,128 @@
 {% load static %}
 <style>
-    /* General styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+    /* General animation setup */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
-
-    body {
-        font-family: 'Arial', sans-serif;
+    100% {
+        opacity: 1;
     }
+}
 
-    /* Welcome Section */
-    .welcome_section {
-        padding: 50px 0;
-        background-color: #f9f9f9;
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
     }
-
-    .welcome-row {
-        margin-bottom: 30px;
+    100% {
+        transform: translateX(0);
+        opacity: 1;
     }
+}
 
-    .welcome_image img {
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        animation: fadeInLeft 1s ease;
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
     }
-
-    .welcome_detail {
-        padding: 20px;
-        animation: fadeInRight 1s ease;
+    100% {
+        transform: translateX(0);
+        opacity: 1;
     }
+}
 
-    .welcome-heading {
-        color: #007bff;
-        font-size: 28px;
-        margin-bottom: 10px;
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
     }
-
-    .welcome-title {
-        font-size: 36px;
-        margin-bottom: 20px;
-        font-weight: bold;
+    100% {
+        transform: scale(1);
+        opacity: 1;
     }
+}
 
-    .welcome-description {
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
+/* Fade-in animation for rows */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
 
-    .welcome_detail-btn .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 50px;
-        background-color: #007bff;
-        color: #fff;
-        font-size: 16px;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-    }
+/* Slide-in animations for text content */
+.slide-in-left {
+    animation: slideInLeft 1s ease-in-out;
+}
 
-    .welcome_detail-btn .btn:hover {
-        background-color: #0056b3;
-    }
+.slide-in-right {
+    animation: slideInRight 1s ease-in-out;
+}
 
-    .welcome_detail-btn img {
-        width: 15px;
-        vertical-align: middle;
-        transition: transform 0.3s ease;
-    }
+/* Zoom-in animation for images */
+.zoom-in {
+    animation: zoomIn 1s ease-in-out;
+}
 
-    .welcome_detail-btn .btn:hover img {
-        transform: translateX(5px);
-    }
+/* Hover effect for button and arrow */
+.btn-animated {
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
 
-    /* Animations */
-    @keyframes fadeInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
+.btn-animated:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
 
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
+.arrow-animated {
+    transition: transform 0.3s ease-in-out;
+}
 
-    @keyframes fadeInRight {
-        from {
-            opacity: 0;
-            transform: translateX(50px);
-        }
+.btn-animated:hover .arrow-animated {
+    transform: translateX(5px);
+}
 
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .welcome-row {
-            flex-direction: column-reverse;
-        }
-
-        .welcome_image img,
-        .welcome_detail {
-            width: 100%;
-        }
-
-        .welcome-title {
-            font-size: 28px;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .welcome-title {
-            font-size: 24px;
-        }
-
-        .welcome_description {
-            font-size: 14px;
-        }
-
-        .welcome_detail-btn .btn {
-            font-size: 14px;
-        }
-    }
 </style>
-
 <section class="welcome_section layout_padding">
     <div class="container-fluid">
         {% for about in page_obj %}
-        <div class="row align-items-center welcome-row">
+        <div class="row align-items-center welcome-row fade-in">
             {% if forloop.counter|divisibleby:2 %}
             <!-- Even row: Text left, Image right -->
             <div class="col-md-6">
-                <div class="welcome_detail">
+                <div class="welcome_detail slide-in-left">
                     <h3 class="welcome-heading">Welcome</h3>
                     <h2 class="welcome-title">{{ about.title }}</h2>
                     <p class="welcome-description">{{ about.description|slice:":150" }}</p>
                     <div class="welcome_detail-btn">
-                        <a href="{% url 'about_detail' about.pk %}" class="btn btn-primary">
+                        <a href="{% url 'about_detail' about.pk %}" class="btn btn-primary btn-animated">
                             <span>Read More</span>
-                            <img src="{% static 'images/arrow.png' %}" alt="arrow" class="ml-2" />
+                            <img src="{% static 'images/arrow.png' %}" alt="arrow" class="ml-2 arrow-animated" />
                         </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="welcome_image">
+                <div class="welcome_image zoom-in">
                     <img class="img-fluid" src="{{ about.image.url }}" alt="Welcome Image" />
                 </div>
             </div>
             {% else %}
             <!-- Odd row: Image left, Text right -->
             <div class="col-md-6">
-                <div class="welcome_image">
+                <div class="welcome_image zoom-in">
                     <img class="img-fluid" src="{{ about.image.url }}" alt="Welcome Image" />
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="welcome_detail">
+                <div class="welcome_detail slide-in-right">
                     <h3 class="welcome-heading">Welcome</h3>
                     <h2 class="welcome-title">{{ about.title }}</h2>
                     <p class="welcome-description">{{ about.description|slice:":150" }}</p>
                     <div class="welcome_detail-btn">
-                        <a href="{% url 'about_detail' about.pk %}" class="btn btn-primary">
+                        <a href="{% url 'about_detail' about.pk %}" class="btn btn-primary btn-animated">
                             <span>Read More</span>
-                            <img src="{% static 'images/arrow.png' %}" alt="arrow" class="ml-2" />
+                            <img src="{% static 'images/arrow.png' %}" alt="arrow" class="ml-2 arrow-animated" />
                         </a>
                     </div>
                 </div>

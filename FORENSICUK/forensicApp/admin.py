@@ -7,4 +7,9 @@ admin.site.register(Member)
 admin.site.register(Feedback)
 admin.site.register(Contact)
 admin.site.register(CarouselItem)
-admin.site.register(Blog)
+
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title',)
+    list_filter = ('created_at',)

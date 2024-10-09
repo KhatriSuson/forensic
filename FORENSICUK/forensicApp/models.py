@@ -1,31 +1,6 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
-# Create your models here.
-# class Slide(models.Model):
-#     title = models.CharField(max_length=200)
-#     descripitoin = models.TextField(blank=True)
-#     image = models.ImageField(upload_to='media/slide')
-#     order = models.IntegerField(default=0)    
-
-#     def __str__(self):
-#         return self.title
-    
-# class Home(models.Model):
-#     image = models.ImageField(upload_to='media/home')
-#     title = models.CharField(max_length=100)
-#     description = models.CharField(max_length=200)
-
-#     def __str__(self):
-#         return self.title
-
-# class Slider(models.Model):
-#     image = models.ImageField(upload_to='media/home')
-#     title = models.CharField(max_length=200)
-#     dis = models.TextField()
-
-#     def __str__(self):
-#         return self.title
-    
 class About(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
@@ -93,7 +68,7 @@ class CarouselItem(models.Model):
     
 class Blog(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    description = RichTextField()
     image = models.ImageField(upload_to='blog_images/')
     created_at = models.DateTimeField(auto_now_add=True)
 
