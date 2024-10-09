@@ -16,7 +16,10 @@
                     <img src="{{ blog.image.url }}" class="card-img-top blog-img" alt="{{ blog.title }}">
                     <div class="card-body">
                         <h5 class="card-title blog-title" style="color: rgb(85, 85, 226);">{{ blog.title }}</h5>
-                        <p class="card-text blog-description">{{ blog.description|slice:":150" }}...</p>
+                        <!-- Render the description using |safe to render CKEditor HTML -->
+                        <p class="card-text blog-description">
+                            {{ blog.description|slice:":150"|safe }}...
+                        </p>
                         <a href="{% url 'blog_detail' blog.pk %}" class="btn btn-primary btn-read-more">Read More</a>
                     </div>
                     <div class="card-footer text-muted">

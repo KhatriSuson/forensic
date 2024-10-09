@@ -15,7 +15,7 @@
                     <img src="{{ blog.image.url }}" class="img-fluid rounded" alt="{{ blog.title }}">
                 </div>
                 <div class="blog_detail_content">
-                    <p>{{ blog.description }}</p>
+                    <p>{{ blog.description | safe }}</p>
                 </div>
             </div>
         </div>
