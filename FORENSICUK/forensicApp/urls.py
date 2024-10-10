@@ -10,6 +10,4 @@ urlpatterns = [
     path('blogs/', views.blog_list, name='blog_list'),
     path('blogs/<int:pk>/', views.blog_detail, name='blog_detail'),
     path('contact/', views.contact, name="contact"),
-    path('post/<int:post_id>/', views.post_detail, name='post_detail'),
-    path('post/<int:post_id>/like/', views.like_post, name='like_post'),
 ]

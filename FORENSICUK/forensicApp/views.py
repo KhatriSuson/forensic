@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
-from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog, BlogPost, Like, Comment
+from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog
 from .forms import CommentForm
 # Create your views here.
 
@@ -108,42 +108,3 @@ def blog_detail(reqeust, pk):
     blog = get_object_or_404(Blog, pk=pk)
     return render(reqeust, 'blog_detail.html', {'blog':blog})
 
-# blog update view
-
-
-def post_detail(request, post_id):
-    post = get_object_or_404(BlogPost, id=post_id)
-    commnets = post.comments.all()
-    is_liked = False
-    
-    if post.likes.filter(id=request.user.id).exists():
-        is_liked = True
-        
-    if request.method == 'POST':
-        commnet_form = CommentForm(request.POst)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.post = post
-            new_comment.user = request.user
-            new_comment.save()
-            return redirect('post_detail', post_id=post.id)
-    else:
-        comment_form = CommentForm()
-
-    context = {
-        'post': post,
-        'comments': comments,
-        'comment_form': comment_form,
-        'is_liked': is_liked,
-        'total_likes': post.total_likes(),
-    }
-    return render(request, 'blog/post_detail.html', context)
-
-# @login_required
-def like_post(request, post_id):
-    post = get_object_or_404(BlogPost, id=post_id)
-    if post.likes.filter(id=request.user.id).exists():
-        post.likes.remove(request.user)
-    else:
-        post.likes.add(request.user)
-    return redirect('post_detail', post_id=post.id)
