@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
-from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog
+from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog, Subscriber
+from .forms import SubscriberForm
 # Create your views here.
 
 def home(request):
@@ -108,6 +109,18 @@ def blog_detail(reqeust, pk):
     return render(reqeust, 'blog_detail.html', {'blog':blog})
 
 
+# Subscriber view
+def subscribe(request):
+    form = SubscriberForm()
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('thank_you')
+    return render(request, 'newsletter/subscribe.html', {'form': form})
+
+def thank_you(request):
+    return render(request, 'newsletter/thank_you.html')
 
 
 

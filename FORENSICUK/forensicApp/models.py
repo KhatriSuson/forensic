@@ -107,3 +107,18 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.user.username} on {self.post.title}'
     
+# Newsletters and subscriptions
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.email
+
+class Newsletter(models.Model):
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.subject
