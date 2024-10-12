@@ -148,9 +148,11 @@
               <form action="">
                 <input type="email" placeholder="ENTER YOUR EMAIL">
                 <div>
-                  <button type="submit">
-                    Subscribe
-                  </button>
+                  <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Subscribe</button>
+                </form>
                 </div>
               </form>
             </div>
