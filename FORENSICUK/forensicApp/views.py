@@ -127,12 +127,9 @@ def subscribe(request):
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('thank_you')
+            form.save()  # Save the subscriber to the database
+            return redirect('thank_you')  # Redirect to the thank you page
     return render(request, 'index.html', {'form': form})
 
 def thank_you(request):
     return render(request, 'newsletter/thank_you.html')
-
-
-
