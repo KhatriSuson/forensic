@@ -25,7 +25,9 @@ def home(request):
     page_number = request.GET.get('page')
     page_obj_service = paginator.get_page(page_number)
     views['page_obj_service'] = page_obj_service
-   
+    
+    
+
 
     # Handle POST request for contact form submission
     if request.method == "POST":
