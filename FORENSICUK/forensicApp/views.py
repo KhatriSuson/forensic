@@ -21,42 +21,30 @@ def home(request):
     views['page_obj'] = page_obj
     
     services = Service.objects.all()
-    paginator_service = Paginator(services, 3)  # Customize the number of items as needed
-    page_number_service = request.GET.get('page_service')  # Different page number for services
-    page_obj_service = paginator_service.get_page(page_number_service)
+    paginator = Paginator(services, 3)  # Customize the number of items as needed
+    page_number = request.GET.get('page')
+    page_obj_service = paginator.get_page(page_number)
     views['page_obj_service'] = page_obj_service
+   
 
     # Handle POST request for contact form submission
     if request.method == "POST":
-        if 'contact_submit' in request.POST:
-            name = request.POST['name']
-            email = request.POST['email']
-            message = request.POST['message']
-            
-            # Create a new contact entry
-            Contact.objects.create(
-                name=name,
-                email=email,
-                message=message
-            ).save()
-            
-            # Optionally redirect to avoid form resubmission on page refresh
-            return redirect('home')
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
         
-        elif 'subscribe_submit' in request.POST:
-            form = SubscriberForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('thank_you')
-    
-    # Handle GET request for subscriber form
-    views['form'] = SubscriberForm()
+        # Create a new contact entry
+        Contact.objects.create(
+            name=name,
+            email=email,
+            message=message
+        ).save()
+        
+        # Optionally redirect to avoid form resubmission on page refresh
+        return redirect('home')
 
     # Render the template with the context
     return render(request, "index.html", views)
-
-def thank_you(request):
-    return render(request, 'newsletter/thank_you.html')
 
     
 
@@ -127,9 +115,12 @@ def subscribe(request):
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
-            form.save()  # Save the subscriber to the database
-            return redirect('thank_you')  # Redirect to the thank you page
-    return render(request, 'index.html', {'form': form})
+            form.save()
+            return redirect('thank_you')
+    return render(request, 'newsletter/subscribe.html', {'form': form})
 
 def thank_you(request):
     return render(request, 'newsletter/thank_you.html')
+
+
+
