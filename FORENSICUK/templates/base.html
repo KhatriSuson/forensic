@@ -148,11 +148,27 @@
               <form action="">
                 <input type="email" placeholder="ENTER YOUR EMAIL">
                 <div>
-                  <form method="POST">
+                  <!-- <form method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">Subscribe</button>
-                </form>
+                </form> -->
+                <form method="POST" action="">
+                  {% csrf_token %}
+                  <!-- Contact form fields -->
+                  <input type="text" name="name" placeholder="Your Name" required>
+                  <input type="email" name="email" placeholder="Your Email" required>
+                  <textarea name="message" placeholder="Your Message" required></textarea>
+                  <button type="submit" name="contact_submit">Submit Contact</button>
+              </form>
+              
+              <form method="POST" action="">
+                  {% csrf_token %}
+                  <!-- Subscriber form fields -->
+                  {{ form.as_p }}  <!-- Renders the fields from the SubscriberForm -->
+                  <button type="submit" name="subscribe_submit">Subscribe</button>
+              </form>
+              
                 </div>
               </form>
             </div>
