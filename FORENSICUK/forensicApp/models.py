@@ -109,8 +109,8 @@ class Comment(models.Model):
     
 # Newsletters and subscriptions
 class Subscriber(models.Model):
-    email = models.EmailField(unique=True)
-    subscribed = models.BooleanField(default=True)
+    email = models.EmailField(unique=True)  # Email field, must be unique to avoid duplicates
+    subscribed_on = models.DateTimeField(auto_now_add=True)  # Automatically set the time of subscription
 
     def __str__(self):
         return self.email

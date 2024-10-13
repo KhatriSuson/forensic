@@ -129,7 +129,7 @@ def subscribe(request):
         if form.is_valid():
             form.save()
             return redirect('thank_you')
-    return render(request, 'newsletter/subscribe.html', {'form': form})
+    return render(request, 'index.html', {'form': form})
 
 def thank_you(request):
     return render(request, 'newsletter/thank_you.html')
