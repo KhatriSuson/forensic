@@ -111,7 +111,7 @@ def blog_detail(reqeust, pk):
     return render(reqeust, 'blog_detail.html', {'blog':blog})
 
 
-# Subscriber view
+# Subscriber viewram@gmail.com
 def subscribe(request):
     form = SubscriberForm()
     if request.method == 'POST':

@@ -148,5 +148,5 @@ EMAIL_HOST = 'smtp.gmail.com'  # Or another SMTP service
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'susonkhatri110@gmail.com'  # Your email
-EMAIL_HOST_PASSWORD = 'root@123'  # Your password
+EMAIL_HOST_PASSWORD = 'python@5310'  # Your password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
