@@ -108,10 +108,12 @@ class Comment(models.Model):
         return f'Comment by {self.user.username} on {self.post.title}'
     
 # Newsletters and subscriptions
+from django.db import models
+
 class Subscriber(models.Model):
     email = models.EmailField(unique=True)
     subscribed_on = models.DateTimeField(auto_now_add=True)
-    newsletters = models.ManyToManyField('Newsletter', related_name='subscribers', blank=True)  # track newsletters
+
     def __str__(self):
         return self.email
 

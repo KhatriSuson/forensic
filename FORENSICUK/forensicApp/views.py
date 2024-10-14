@@ -111,36 +111,37 @@ def blog_detail(reqeust, pk):
     return render(reqeust, 'blog_detail.html', {'blog':blog})
 
 
-# Subscriber viewram@gmail.com
+
+# subscribe and newletter
+
 def subscribe(request):
     form = SubscriberForm()
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
-            subscriber = form.save()
-            # Assuming you have a newsletter object, add the subscriber
-            newsletter = Newsletter.objects.first()  # Just an example; use your logic to select
-            subscriber.newsletters.add(newsletter)
-            
-            # Send confirmation email
-            send_mail(
-                'Thank you for subscribing!',
-                'You have successfully subscribed to our newsletter.',
-                settings.DEFAULT_FROM_EMAIL,
-                [subscriber.email],
-                fail_silently=False,
-            )
+            form.save()
+            send_welcome_email(form.cleaned_data['email'])
             return redirect('thank_you')
     return render(request, 'newsletter/subscribe.html', {'form': form})
 
 def thank_you(request):
     return render(request, 'newsletter/thank_you.html')
 
+# Send Welcome Email
+def send_welcome_email(email):
+    send_mail(
+        'Welcome to Our Newsletter',
+        'Thank you for subscribing to our newsletter!',
+        settings.DEFAULT_FROM_EMAIL,
+        [email],
+        fail_silently=False,
+    )
 
+# Send Newsletter to All Subscribers
 def send_newsletter(newsletter_id):
     newsletter = Newsletter.objects.get(id=newsletter_id)
-    subscribers = newsletter.subscribers.all()
-    
+    subscribers = Subscriber.objects.all()
+
     for subscriber in subscribers:
         send_mail(
             newsletter.subject,
@@ -149,6 +150,5 @@ def send_newsletter(newsletter_id):
             [subscriber.email],
             fail_silently=False,
         )
-
 
 
