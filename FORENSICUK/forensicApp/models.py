@@ -109,9 +109,9 @@ class Comment(models.Model):
     
 # Newsletters and subscriptions
 class Subscriber(models.Model):
-    email = models.EmailField(unique=True)  # Email field, must be unique to avoid duplicates
-    subscribed_on = models.DateTimeField(auto_now_add=True)  # Automatically set the time of subscription
-
+    email = models.EmailField(unique=True)
+    subscribed_on = models.DateTimeField(auto_now_add=True)
+    newsletters = models.ManyToManyField('Newsletter', related_name='subscribers', blank=True)  # track newsletters
     def __str__(self):
         return self.email
 
