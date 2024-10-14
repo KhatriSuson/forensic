@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
-from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog, Subscriber
+from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog, Subscriber, Newsletter
+from django.core.mail import send_mail
+from django.conf import settings
 from .forms import SubscriberForm
 # Create your views here.
 
@@ -115,12 +117,38 @@ def subscribe(request):
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
-            form.save()
+            subscriber = form.save()
+            # Assuming you have a newsletter object, add the subscriber
+            newsletter = Newsletter.objects.first()  # Just an example; use your logic to select
+            subscriber.newsletters.add(newsletter)
+            
+            # Send confirmation email
+            send_mail(
+                'Thank you for subscribing!',
+                'You have successfully subscribed to our newsletter.',
+                settings.DEFAULT_FROM_EMAIL,
+                [subscriber.email],
+                fail_silently=False,
+            )
             return redirect('thank_you')
     return render(request, 'newsletter/subscribe.html', {'form': form})
 
 def thank_you(request):
     return render(request, 'newsletter/thank_you.html')
+
+
+def send_newsletter(newsletter_id):
+    newsletter = Newsletter.objects.get(id=newsletter_id)
+    subscribers = newsletter.subscribers.all()
+    
+    for subscriber in subscribers:
+        send_mail(
+            newsletter.subject,
+            newsletter.message,
+            settings.DEFAULT_FROM_EMAIL,
+            [subscriber.email],
+            fail_silently=False,
+        )
 
 
 
