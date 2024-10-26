@@ -122,7 +122,7 @@ def subscribe(request):
             form.save()
             send_welcome_email(form.cleaned_data['email'])
             return redirect('thank_you')
-    return render(request, 'newsletter/subscribe.html', {'form': form})
+    return render(request, 'newsletter/index.html', {'form': form})
 
 def thank_you(request):
     return render(request, 'newsletter/thank_you.html')
