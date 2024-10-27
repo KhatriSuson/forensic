@@ -42,10 +42,8 @@ def home(request):
             message=message
         ).save()
         
-        # Optionally redirect to avoid form resubmission on page refresh
         return redirect('home')
 
-    # Render the template with the context
     return render(request, "index.html", views)
 
     
