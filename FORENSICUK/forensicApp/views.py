@@ -4,6 +4,9 @@ from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import SubscriberForm
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.db.models.query_utils import Q
 # Create your views here.
 
 def home(request):
@@ -113,7 +116,7 @@ def blog_detail(reqeust, pk):
 # subscribe and newletter
 
 def subscribe(request):
-    form = SubscriberForm()
+    # form = SubscriberForm()
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
         if form.is_valid():
