@@ -115,18 +115,40 @@ def blog_detail(reqeust, pk):
 
 # subscribe and newletter
 
-def subscribe(request):
+# def subscribe(request):
     # form = SubscriberForm()
-    if request.method == 'POST':
-        form = SubscriberForm(request.POST)
-        if form.is_valid():
-            form.save()
-            send_welcome_email(form.cleaned_data['email'])
-            return redirect('thank_you')
-    return render(request, 'newsletter/subscribe.html', {'form': form})
+    # if request.method == 'POST':
+    #     form = SubscriberForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         send_welcome_email(form.cleaned_data['email'])
+    #         return redirect('thank_you')
+    # return render(request, 'newsletter/subscribe.html', {'form': form})
 
-def thank_you(request):
-    return render(request, 'newsletter/thank_you.html')
+# def thank_you(request):
+#     return render(request, 'newsletter/thank_you.html')
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.get('email', None)
+        
+        if not email:
+            messages.error(request, 'Please enter a valid email address.')
+            return redirect('/')
+        
+        
+        if get_user_model().objects.filter(email=email).first():
+            messages.error(request, f"Found registered user with associated {email} email.")
+            return redirect(request.META.get('HTTP_REFERER','/'))
+        
+        
+        try:
+            validate_email(email)
+            Subscriber.objects.create(email=email)
+            send_welcome_email(email)
+            return redirect('thank_you')
+        except ValidationError:
+            return redirect('subscribe')
 
 # Send Welcome Email
 def send_welcome_email(email):

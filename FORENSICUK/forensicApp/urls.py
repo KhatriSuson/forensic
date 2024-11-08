@@ -12,5 +12,5 @@ urlpatterns = [
     path('contact/', views.contact, name="contact"),
     
     path('subscribe/', views.subscribe, name="subscribe"),
-    path('thank-you/', views.thank_you, name="thank_you"),
+    # path('thank-you/', views.thank_you, name="thank_you"),
 ]
