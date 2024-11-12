@@ -9,6 +9,7 @@ from django.core.exceptions import ValidationError
 from django.db.models.query_utils import Q
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from .forms import SubscriptionForm
 # Create your views here.
 
 def home(request):
@@ -132,36 +133,39 @@ def blog_detail(reqeust, pk):
 
 def subscribe(request):
     if request.method == 'POST':
-        email = request.get('email', None)
+        form = SubscriptionForm(request.POST)
         
-        if not email:
-            messages.error(request, 'Please enter a valid email address.')
-            return redirect('/')
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            
+            # Check if a user with the email already exists
+            if get_user_model().objects.filter(email=email).exists():
+                messages.error(request, f"A registered user is associated with {email}.")
+                return redirect(request.META.get('HTTP_REFERER', '/'))
+            
+            # Check if email is already subscribed
+            if Subscriber.objects.filter(email=email).exists():
+                messages.error(request, f"{email} is already subscribed.")
+                return redirect(request.META.get('HTTP_REFERER', '/'))
+            
+            # Validate email and subscribe
+            try:
+                validate_email(email)
+                Subscriber.objects.create(email=email)
+                send_welcome_email(email)  # Ensure `send_welcome_email` is implemented
+                messages.success(request, "Thank you for subscribing!")
+                return redirect('thank_you')  # Set up this 'thank_you' view or template
+            except ValidationError as e:
+                messages.error(request, e.message)
+                return redirect('/')
+        else:
+            messages.error(request, "Please enter a valid email address.")
+    
+    else:
+        form = SubscriptionForm()
+    
+    return render(request, 'subscribe.html', {'form': form})
         
-        
-        if get_user_model().objects.filter(email=email).first():
-            messages.error(request, f"Found registered user with associated {email} email.")
-            return redirect(request.META.get('HTTP_REFERER','/'))
-        
-        subscribe_user = Subscriber.objects.filter(email=email).first()
-        if subscribe_user:
-            messages.error(request, f"{email} is already subscribed.")
-            return redirect(request.META.get('HTTP_REFERER','/'))
-        
-        
-        try:
-            validate_email(email)
-            Subscriber.objects.create(email=email)
-            send_welcome_email(email)
-            return redirect('thank_you')
-        except ValidationError as e:
-            messages.error(request, e.message[0])
-            return redirect('/')
-        
-        subscribe_model_instance = SubscribedUsers()
-        subscribe_model_instance.email = email
-        subscribe_model_instance.save()
-        messages.success(request, f'{email} has been successfully subscribed to our newsletter.')
 
 # Send Welcome Email
 def send_welcome_email(email):
