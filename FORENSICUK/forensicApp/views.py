@@ -176,6 +176,9 @@ def send_welcome_email(email):
     from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [email]
     send_mail(subject, message, from_email, recipient_list)
+    
+def thank_you(request):
+    return render(request, 'thank_you.html')
 
 # Send Welcome Email
 def send_welcome_email(email):
