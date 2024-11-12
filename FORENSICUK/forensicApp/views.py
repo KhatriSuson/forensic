@@ -3,13 +3,15 @@ from django.core.paginator import Paginator
 from .models import About, Service, Member, Feedback, Contact, CarouselItem,Blog, Subscriber, Newsletter
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import SubscriberForm
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.db.models.query_utils import Q
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from .forms import SubscriptionForm
+# utils.py (or you can place it in views.py if preferred)
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 def home(request):
@@ -166,6 +168,14 @@ def subscribe(request):
     
     return render(request, 'subscribe.html', {'form': form})
         
+
+
+def send_welcome_email(email):
+    subject = "Welcome to Our Newsletter"
+    message = "Thank you for subscribing to our newsletter!"
+    from_email = settings.DEFAULT_FROM_EMAIL
+    recipient_list = [email]
+    send_mail(subject, message, from_email, recipient_list)
 
 # Send Welcome Email
 def send_welcome_email(email):

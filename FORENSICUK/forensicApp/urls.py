@@ -11,6 +11,6 @@ urlpatterns = [
     path('blogs/<int:pk>/', views.blog_detail, name='blog_detail'),
     path('contact/', views.contact, name="contact"),
     
-    path('subscribe/', views.subscribe, name="subscribe"),
-    # path('thank-you/', views.thank_you, name="thank_you"),
+    path('subscribe/', views.subscribe, name='subscribe'),
+    path('thank_you/', views.thank_you, name='thank_you'),
 ]
