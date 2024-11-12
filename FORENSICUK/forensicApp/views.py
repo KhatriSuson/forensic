@@ -7,6 +7,8 @@ from .forms import SubscriberForm
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.db.models.query_utils import Q
+from django.contrib.auth import get_user_model
+from django.contrib import messages
 # Create your views here.
 
 def home(request):
@@ -141,14 +143,25 @@ def subscribe(request):
             messages.error(request, f"Found registered user with associated {email} email.")
             return redirect(request.META.get('HTTP_REFERER','/'))
         
+        subscribe_user = Subscriber.objects.filter(email=email).first()
+        if subscribe_user:
+            messages.error(request, f"{email} is already subscribed.")
+            return redirect(request.META.get('HTTP_REFERER','/'))
+        
         
         try:
             validate_email(email)
             Subscriber.objects.create(email=email)
             send_welcome_email(email)
             return redirect('thank_you')
-        except ValidationError:
-            return redirect('subscribe')
+        except ValidationError as e:
+            messages.error(request, e.message[0])
+            return redirect('/')
+        
+        subscribe_model_instance = SubscribedUsers()
+        subscribe_model_instance.email = email
+        subscribe_model_instance.save()
+        messages.success(request, f'{email} has been successfully subscribed to our newsletter.')
 
 # Send Welcome Email
 def send_welcome_email(email):

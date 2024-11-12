@@ -1,10 +1,7 @@
 from django.contrib import admin
 from .models import About, Service, Member, Feedback, Contact, CarouselItem, Blog, Subscriber, Newsletter
 from django.core.mail import send_mail
-class SubscriberAdmin(admin.ModelAdmin):
-    list_display = ('email', 'subscribed')
-    search_fields = ('email',)
-    list_filter = ('subscribed',)
+
 # Register your models here.
 admin.site.register(About)
 admin.site.register(Service)
