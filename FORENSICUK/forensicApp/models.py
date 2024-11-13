@@ -112,6 +112,7 @@ from django.db import models
 
 class Subscriber(models.Model):
     email = models.EmailField(unique=True)
+    subscribed = models.BooleanField(default=True)  # Add this line for a 'subscribed' boolean field
     subscribed_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

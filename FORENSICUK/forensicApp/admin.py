@@ -2,6 +2,13 @@ from django.contrib import admin
 from .models import About, Service, Member, Feedback, Contact, CarouselItem, Blog, Subscriber, Newsletter
 from django.core.mail import send_mail
 
+def send_newsletter(modeladmin, request, queryset):
+    # Adjusting the filter based on the field that exists
+    subscribers = Subscriber.objects.filter(subscribed_on__isnull=False)  # Assuming 'subscribed_on' is used to mark subscribers
+    for subscriber in subscribers:
+        # Your logic to send the newsletter
+        pass
+
 # Register your models here.
 admin.site.register(About)
 admin.site.register(Service)
