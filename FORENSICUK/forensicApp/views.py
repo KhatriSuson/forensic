@@ -12,6 +12,7 @@ from .forms import SubscriptionForm
 # utils.py (or you can place it in views.py if preferred)
 from django.core.mail import send_mail
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def home(request):
@@ -132,7 +133,7 @@ def blog_detail(reqeust, pk):
 
 # def thank_you(request):
 #     return render(request, 'newsletter/thank_you.html')
-
+@csrf_exempt
 def subscribe(request):
     if request.method == 'POST':
         form = SubscriptionForm(request.POST)
