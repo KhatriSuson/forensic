@@ -148,7 +148,7 @@ EMAIL_HOST = 'smtp.gmail.com'  # Or another SMTP service
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sushankhatri545@gmail.com'  # Your email
-EMAIL_HOST_PASSWORD = 'linkedin@#$5310'  # Your password
+EMAIL_HOST_PASSWORD = 'uqyg lxvi srzd npyg'  # Your password
 DEFAULT_FROM_EMAIL = 'sushankhatri545@gmail.com'
 
 
