@@ -149,7 +149,7 @@ def subscribe(request):
             # Check if email is already subscribed
             if Subscriber.objects.filter(email=email).exists():
                 messages.error(request, f"{email} is already subscribed.")
-                return redirect(request.META.get('HTTP_REFERER', '/'))
+                # return redirect(request.META.get('HTTP_REFERER', '/'))
             
             # Validate email and subscribe
             try:
