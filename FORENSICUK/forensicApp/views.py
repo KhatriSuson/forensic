@@ -144,7 +144,7 @@ def subscribe(request):
             # Check if a user with the email already exists
             if get_user_model().objects.filter(email=email).exists():
                 messages.error(request, f"A registered user is associated with {email}.")
-                return redirect(request.META.get('HTTP_REFERER', '/'))
+                # return redirect(request.META.get('HTTP_REFERER', '/'))
             
             # Check if email is already subscribed
             if Subscriber.objects.filter(email=email).exists():
@@ -181,15 +181,6 @@ def send_welcome_email(email):
 def thank_you(request):
     return render(request, 'thank_you.html')
 
-# Send Welcome Email
-def send_welcome_email(email):
-    send_mail(
-        'Welcome to Our Newsletter',
-        'Thank you for subscribing to our newsletter!',
-        settings.DEFAULT_FROM_EMAIL,
-        [email],
-        fail_silently=False,
-    )
 
 # Send Newsletter to All Subscribers
 def send_newsletter(newsletter_id):
