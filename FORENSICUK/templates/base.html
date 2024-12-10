@@ -144,14 +144,13 @@
               <h3>
                 newsletter
               </h3>
-              <form action="">
+              <form action="{% url 'home' %}" method="post">
+                {% csrf_token %}
                 <input type="email" placeholder="ENTER YOUR EMAIL">
                 <div>
-                  <form method="POST"  action="{% url 'subscribe' %}">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Subscribe</button>
-                </form>
+                  <button type="submit">Subscribe</button>
+                    
+                    
                 </div>
               </form>
             </div>
@@ -187,8 +186,9 @@
   <!-- footer section -->
   <section class="container-fluid footer_section">
     <p>
-      Copyright &copy; 2024 <a href="https://digitalforensicuk.com/" target="_blank">Digital Forensic UK</a> -All Rights Reserved.
-      
+      Copyright &copy; 2024 <a href="https://digitalforensicuk.com/" target="_blank">Digital Forensic UK</a> -All Rights
+      Reserved.
+
     </p>
   </section>
   <!-- footer section -->
@@ -275,7 +275,7 @@
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
 
-  <!-- end google map js -->
+    {% include 'subscribe.html' %}
 
 </body>
 

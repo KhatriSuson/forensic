@@ -119,71 +119,66 @@ def blog_detail(reqeust, pk):
 
 
 
-# subscribe and newletter
-
-# def subscribe(request):
-    # form = SubscriberForm()
-    # if request.method == 'POST':
-    #     form = SubscriberForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         send_welcome_email(form.cleaned_data['email'])
-    #         return redirect('thank_you')
-    # return render(request, 'newsletter/subscribe.html', {'form': form})
-
-# def thank_you(request):
-#     return render(request, 'newsletter/thank_you.html')
 @csrf_exempt
 def subscribe(request):
     if request.method == 'POST':
         form = SubscriptionForm(request.POST)
-        
+
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            
-            # Check if a user with the email already exists
+
+            # Check if a registered user exists with this email
             if get_user_model().objects.filter(email=email).exists():
                 messages.error(request, f"A registered user is associated with {email}.")
-                # return redirect(request.META.get('HTTP_REFERER', '/'))
-            
+                return redirect(request.META.get('HTTP_REFERER', '/'))
+
             # Check if email is already subscribed
             if Subscriber.objects.filter(email=email).exists():
                 messages.error(request, f"{email} is already subscribed.")
-                # return redirect(request.META.get('HTTP_REFERER', '/'))
-            
-            # Validate email and subscribe
+                return redirect(request.META.get('HTTP_REFERER', '/'))
+
+            # Validate email and add subscriber
             try:
-                validate_email(email)
-                Subscriber.objects.create(email=email)
-                send_welcome_email(email)  # Ensure `send_welcome_email` is implemented
+                validate_email(email)  # Ensure the email is valid
+                Subscriber.objects.create(email=email)  # Create the subscriber
+                send_welcome_email(email)  # Send a welcome email
                 messages.success(request, "Thank you for subscribing!")
-                return redirect('thank_you')  # Set up this 'thank_you' view or template
+                return redirect('thank_you')  # Redirect to a thank-you page
             except ValidationError as e:
                 messages.error(request, e.message)
-                return redirect('/')
+                return redirect(request.META.get('HTTP_REFERER', '/'))
         else:
             messages.error(request, "Please enter a valid email address.")
-    
-    else:
-        form = SubscriptionForm()
-    
-    return render(request, 'subscribe.html', {'form': form})
-        
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+
+    # For non-POST requests, render the subscription form
+    form = SubscriptionForm()
+    return render(request, 'base.html', {'form': form})
 
 
 def send_welcome_email(email):
+    """
+    Send a welcome email to the new subscriber.
+    """
     subject = "Welcome to Our Newsletter"
     message = "Thank you for subscribing to our newsletter!"
     from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [email]
     send_mail(subject, message, from_email, recipient_list)
-    
+
+
 def thank_you(request):
+    """
+    Render the thank-you page after successful subscription.
+    """
     return render(request, 'thank_you.html')
 
 
 # Send Newsletter to All Subscribers
 def send_newsletter(newsletter_id):
+    """
+    Send a newsletter to all subscribers.
+    """
     newsletter = Newsletter.objects.get(id=newsletter_id)
     subscribers = Subscriber.objects.all()
 
