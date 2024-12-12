@@ -107,8 +107,6 @@ class Comment(models.Model):
     def __str__(self):
         return f'Comment by {self.user.username} on {self.post.title}'
     
-# Newsletters and subscriptions
-from django.db import models
 
 class Subscriber(models.Model):
     email = models.EmailField(unique=True)
